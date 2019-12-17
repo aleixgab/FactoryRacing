@@ -6,7 +6,6 @@ using UnityEngine.Networking;
 public class PlayerController : NetworkBehaviour
 {
     private Animator animator;
-    private Camera mainCamera;
     private TextMesh nameLabel;
 
     private CustomNetworkManager networkManager;
@@ -105,7 +104,6 @@ public class PlayerController : NetworkBehaviour
     void Start ()
     {
         animator = GetComponent<Animator>();
-        mainCamera = Camera.main;
         nameLabel = transform.Find("Label").gameObject.GetComponent<TextMesh>();
 
         networkManager = NetworkManager.singleton.GetComponent<CustomNetworkManager>();
@@ -158,12 +156,6 @@ public class PlayerController : NetworkBehaviour
             if (Input.GetButtonDown("Fire1"))
             {
                 SetAnimation("Kicking");
-            }
-
-            if (mainCamera)
-            {
-                mainCamera.transform.SetPositionAndRotation(transform.position + new Vector3(0.0f, 4.0f, -3.0f), Quaternion.identity);
-                mainCamera.transform.LookAt(transform.position + new Vector3(0.0f, 2.0f, 0.0f), Vector3.up);
             }
 
             if (nameLabel)
