@@ -60,13 +60,27 @@ public class CustomNetworkManager : NetworkManager
 
     public void ChangePlayerPrefab(PlayerController currentPlayer, int prefabIndex)
     {
-        Debug.Log(playerPrefabIndex);
-
         // Instantiate a new GameObject where the previous one was
         GameObject newPlayer = Instantiate(spawnPrefabs[prefabIndex],
           currentPlayer.gameObject.transform.position,
           currentPlayer.gameObject.transform.rotation);
 
+        DestroyAndReplace(currentPlayer, newPlayer);
+    }
+
+    public void ChangePlayerPrefab(PlayerController currentPlayer, int prefabIndex, Transform parent)
+    {
+        // Instantiate a new GameObject where the previous one was
+        GameObject newPlayer = Instantiate(spawnPrefabs[prefabIndex],
+          Vector3.zero,
+          currentPlayer.gameObject.transform.rotation,
+          parent);
+
+        DestroyAndReplace(currentPlayer, newPlayer);
+    }
+
+    private static void DestroyAndReplace(PlayerController currentPlayer, GameObject newPlayer)
+    {
         // Destroy the previous player GameObject
         NetworkServer.Destroy(currentPlayer.gameObject);
 
@@ -74,7 +88,6 @@ public class CustomNetworkManager : NetworkManager
         NetworkServer.ReplacePlayerForConnection(
           currentPlayer.connectionToClient, newPlayer, 0);
     }
-
     public void AddObject(int objIndex, Transform t)
     {
         GameObject gameObject = Instantiate<GameObject>(spawnPrefabs[objIndex], t.position, Quaternion.identity);
