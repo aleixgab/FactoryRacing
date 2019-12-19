@@ -10,6 +10,7 @@ public class SelectCar : MonoBehaviour
     private void Start()
     {
         cars[current].SetActive(true);
+        CustomNetworkManager.playerPrefabIndex = current;
     }
 
     private void Update()
