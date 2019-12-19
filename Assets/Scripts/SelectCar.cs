@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class SelectCar : MonoBehaviour
 {
+    public CustomNetworkManager manager;
+    
     public GameObject[] cars;
     private short current = 0;
 
     private void Start()
     {
         cars[current].SetActive(true);
-        CustomNetworkManager.playerPrefabIndex = current;
+        //manager.playerPrefabIndex = current;
     }
 
     private void Update()
@@ -37,7 +39,7 @@ public class SelectCar : MonoBehaviour
             current = 0;
 
         cars[current].SetActive(true);
-        CustomNetworkManager.playerPrefabIndex = current;
+        manager.playerPrefabIndex = current;
     }
 
     public void OnButtonPrev()
@@ -49,12 +51,7 @@ public class SelectCar : MonoBehaviour
             current = (short)(cars.Length - 1);
 
         cars[current].SetActive(true);
-        CustomNetworkManager.playerPrefabIndex = current;
+        manager.playerPrefabIndex = current;
     }
-
-
-    private void OnDestroy()
-    {
-        PlayerPrefs.SetInt("CarID", current);
-    }
+     
 }

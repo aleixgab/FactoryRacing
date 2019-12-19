@@ -17,23 +17,23 @@ public class MsgTypes
 public class CustomNetworkManager : NetworkManager
 {
 
-    public static short playerPrefabIndex;
+    public short playerPrefabIndex;
 
-    // 1) Executed in the server 
+    // 1) Executed in the server
     public override void OnStartServer()
     {
         NetworkServer.RegisterHandler(MsgTypes.PlayerPrefabSelect, OnPrefabResponse);
         base.OnStartServer();
     }
 
-    // 2) Executed in the client 
+    // 2) Executed in the client
     public override void OnClientConnect(NetworkConnection conn)
     {
         client.RegisterHandler(MsgTypes.PlayerPrefabSelect, OnPrefabRequest);
         base.OnClientConnect(conn);
     }
 
-    // 3) Executed in the server 
+    // 3) Executed in the server
     public override void OnServerAddPlayer(NetworkConnection conn, short playerControllerld)
     {
         MsgTypes.PlayerPrefabMsg msg = new MsgTypes.PlayerPrefabMsg();
@@ -41,15 +41,16 @@ public class CustomNetworkManager : NetworkManager
         NetworkServer.SendToClient(conn.connectionId, MsgTypes.PlayerPrefabSelect, msg);
     }
 
-    // 4) Prefab requested in the client 
+    // 4) Prefab requested in the client
     private void OnPrefabRequest(NetworkMessage netMsg)
     {
         MsgTypes.PlayerPrefabMsg msg = netMsg.ReadMessage<MsgTypes.PlayerPrefabMsg>();
         msg.prefabIndex = playerPrefabIndex;
+        Debug.Log(playerPrefabIndex);
         client.Send(MsgTypes.PlayerPrefabSelect, msg);
     }
 
-    // 5) Prefab communicated to the server 
+    // 5) Prefab communicated to the server
     private void OnPrefabResponse(NetworkMessage netMsg)
     {
         MsgTypes.PlayerPrefabMsg msg = netMsg.ReadMessage<MsgTypes.PlayerPrefabMsg>();
@@ -57,22 +58,11 @@ public class CustomNetworkManager : NetworkManager
         base.OnServerAddPlayer(netMsg.conn, msg.controllerId);
     }
 
-    public string[] playerNames = new string[] { "Boy", "Girl", "Robot" };
-
-    private void OnGUI()
-    {
-        if (!isNetworkActive)
-        {
-            playerPrefabIndex = (short)GUI.SelectionGrid(
-              new Rect(Screen.width - 200, 10, 200, 50),
-              playerPrefabIndex,
-              playerNames,
-              3);
-        }
-    }
     public void ChangePlayerPrefab(PlayerController currentPlayer, int prefabIndex, Vector3 pos)
     {
-        // Instantiate a new GameObject where the previous one was 
+        Debug.Log(playerPrefabIndex);
+
+        // Instantiate a new GameObject where the previous one was
         GameObject newPlayer = Instantiate(spawnPrefabs[prefabIndex],
           pos, currentPlayer.gameObject.transform.rotation);
 
@@ -91,5 +81,3 @@ public class CustomNetworkManager : NetworkManager
         NetworkServer.Spawn(gameObject);
     }
 }
-
-

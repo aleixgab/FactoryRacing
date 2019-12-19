@@ -719,7 +719,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1286289799}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10c2fd873b12541b392f10ecc4846574, type: 3}
+  m_Script: {fileID: 11500000, guid: 99bc4234d38d18249a1819b93051c788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   m_NetworkPort: 7777
@@ -738,10 +738,10 @@ MonoBehaviour:
   m_OfflineScene: Car Select
   m_OnlineScene: Sprint Track
   m_SpawnPrefabs:
-  - {fileID: 0}
   - {fileID: 4521971553934378500, guid: 88688ab35b18a604ba53c0467e6e5093, type: 3}
   - {fileID: 6482162494586402869, guid: 1476bc280d0e44d45b9aa5b52ede0fa8, type: 3}
   - {fileID: 2192806625899142037, guid: 92189bdb8f4f68e4ab867604f50f30f2, type: 3}
+  - {fileID: 3505113173721489385, guid: 43ba6623db1ef6d42883d9aac1f1d095, type: 3}
   m_CustomConfig: 0
   m_MaxConnections: 4
   m_ConnectionConfig:
@@ -784,7 +784,7 @@ MonoBehaviour:
     m_MaxTimerTimeout: 12000
     m_MinNetSimulatorTimeout: 1
     m_MaxNetSimulatorTimeout: 12000
-  m_Channels: 
+  m_Channels: 0500000000000000
   m_UseWebSockets: 0
   m_UseSimulator: 0
   m_SimulatedLatency: 1
