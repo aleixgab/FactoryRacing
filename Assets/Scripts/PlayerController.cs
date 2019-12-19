@@ -65,6 +65,13 @@ public class PlayerController : NetworkBehaviour
         }
     }
 
+    // Finish sync ////////////////////////////////
+    [SyncVar(hook = "FinishLap")]
+
+    [Command]
+    void CmdSetAnimation(string animName) { animationName = animName; }
+
+
     // Animation sync ////////////////////////////////
     [SyncVar(hook = "OnSetAnimation")]
     string animationName;
@@ -166,5 +173,12 @@ public class PlayerController : NetworkBehaviour
     }
     private void OnDestroy()
     {
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if(other.CompareTag("Finish"))
+        {
+
+        }
     }
 }
