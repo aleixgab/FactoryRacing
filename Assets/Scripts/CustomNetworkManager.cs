@@ -70,12 +70,11 @@ public class CustomNetworkManager : NetworkManager
               3);
         }
     }
-    public void ChangePlayerPrefab(PlayerController currentPlayer, int prefabIndex)
+    public void ChangePlayerPrefab(PlayerController currentPlayer, int prefabIndex, Vector3 pos)
     {
         // Instantiate a new GameObject where the previous one was 
         GameObject newPlayer = Instantiate(spawnPrefabs[prefabIndex],
-          currentPlayer.gameObject.transform.position,
-          currentPlayer.gameObject.transform.rotation);
+          pos, currentPlayer.gameObject.transform.rotation);
 
         // Destroy the previous player GameObject
         NetworkServer.Destroy(currentPlayer.gameObject);

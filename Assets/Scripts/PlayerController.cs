@@ -13,6 +13,8 @@ public class PlayerController : NetworkBehaviour
     const float RUNNING_SPEED = 10.0f;
     const float ROTATION_SPEED = 180.0f;
 
+    public GameObject finishObject;
+
     // Name sync /////////////////////////////////////
     [SyncVar(hook = "SyncNameChanged")]
     string playerName = "Player";
@@ -25,9 +27,9 @@ public class PlayerController : NetworkBehaviour
 
     // Prefab sync /////////////////////////////////////
     [Command]
-    void CmdChangePlayerPrefab(int prefabIndex)
+    void CmdChangePlayerPrefab(int prefabIndex, Vector3 pos)
     {
-        networkManager.ChangePlayerPrefab(this, prefabIndex);
+        networkManager.ChangePlayerPrefab(this, prefabIndex, pos);
     }  
     
     // Pumpking sync /////////////////////////////////////
@@ -54,13 +56,6 @@ public class PlayerController : NetworkBehaviour
                 }
             }
 
-            short newIndex = (short)GUILayout.SelectionGrid(networkManager.playerPrefabIndex, networkManager.playerNames, 3);
-
-            if(newIndex != networkManager.playerPrefabIndex)
-            {
-                networkManager.playerPrefabIndex = newIndex;
-                CmdChangePlayerPrefab(newIndex);
-            }
             GUILayout.EndArea();
         }
     }
@@ -70,9 +65,12 @@ public class PlayerController : NetworkBehaviour
     bool isFinished = false;
 
     [Command]
-    void CmdFinishLap() 
+    void CmdFinishLap()
     {
+        Debug.Log("in");
         isFinished = true;
+        finishObject.SetActive(true);
+        CmdChangePlayerPrefab(CustomNetworkManager.playerPrefabIndex + 3, finishObject.transform.position);
     }
 
 
@@ -180,6 +178,7 @@ public class PlayerController : NetworkBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other.tag.ToString());
         if(other.CompareTag("Finish"))
         {
             CmdFinishLap();
