@@ -124,6 +124,8 @@ public class PlayerController : NetworkBehaviour
             Debug.Log(":(");
         else
             Debug.Log(":)");
+
+        CmdChangePlayerPrefab(networkManager.playerPrefabIndex);
     }
 
     // Update is called once per frame
