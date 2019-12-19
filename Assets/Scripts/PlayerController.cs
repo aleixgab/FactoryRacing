@@ -18,7 +18,7 @@ public class PlayerController : NetworkBehaviour
     [Command]
     void CmdChangeName(string name) { playerName = name; }
 
-    void SyncNameChanged(string name) { nameLabel.text = name; }
+    void SyncNameChanged(string name) { /*nameLabel.text = name;*/ }
 
 
     // Prefab sync /////////////////////////////////////
