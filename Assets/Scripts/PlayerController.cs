@@ -5,6 +5,7 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour
 {
+    public bool someoneFinished = false;
     private TextMesh nameLabel;
 
     private CustomNetworkManager networkManager;
@@ -59,10 +60,11 @@ public class PlayerController : NetworkBehaviour
     bool isFinished = false;
 
     [Command]
-    void CmdFinishLap() { isFinished = true; }
-    void SyncFinishLap(bool b) 
+    void CmdFinishLap(bool finish) { isFinished = finish; }
+    void SyncFinishLap(bool finish) 
     {
-        finishTransform.gameObject.SetActive(b);
+        someoneFinished = finish;
+        //finishTransform.gameObject.SetActive(finish);
         //CmdChangePlayerPrefab(networkManager.playerPrefabIndex + 3, finishTransform);
     }
 
@@ -99,8 +101,8 @@ public class PlayerController : NetworkBehaviour
         Debug.Log(other.tag.ToString());
         if(other.CompareTag("Finish"))
         {
-            isFinished = true;
-            CmdFinishLap();
+            CmdFinishLap(true);
+            SyncFinishLap(true);
         }
     }
 }
