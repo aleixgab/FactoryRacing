@@ -5,7 +5,7 @@ using UnityEngine;
 public class SelectCar : MonoBehaviour
 {
     public GameObject[] cars;
-    private int current = 0;
+    private short current = 0;
 
     private void Start()
     {
@@ -36,6 +36,7 @@ public class SelectCar : MonoBehaviour
             current = 0;
 
         cars[current].SetActive(true);
+        CustomNetworkManager.playerPrefabIndex = current;
     }
 
     public void OnButtonPrev()
@@ -44,9 +45,10 @@ public class SelectCar : MonoBehaviour
 
         current--;
         if (current < 0)
-            current = cars.Length - 1;
+            current = (short)(cars.Length - 1);
 
         cars[current].SetActive(true);
+        CustomNetworkManager.playerPrefabIndex = current;
     }
 
 

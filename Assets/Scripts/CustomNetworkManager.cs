@@ -90,9 +90,7 @@ public class CustomNetworkManager : NetworkManager
         GameObject gameObject = Instantiate<GameObject>(spawnPrefabs[objIndex], t.position, Quaternion.identity);
 
         NetworkServer.Spawn(gameObject);
-    }
-
-    
+        
 }
 
 
