@@ -141,6 +141,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Default
       objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 3}
+      propertyPath: m_SpeedType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11400002, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 3}
+      propertyPath: m_Topspeed
+      value: 175
+      objectReference: {fileID: 0}
     - target: {fileID: 400050, guid: 0e7ee4df08df88c4880f43398f9ad2c2, type: 3}
       propertyPath: m_LocalPosition.x
       value: 333.6349
