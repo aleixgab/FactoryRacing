@@ -43,7 +43,10 @@ public class CameraFollow : MonoBehaviour
 
     private void UpdateCamera()
     {
-        transform.position = Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
-        transform.LookAt(lookAtTarget);
+        if (positionTarget)
+            transform.position = Vector3.Lerp(transform.position, positionTarget.position, Time.deltaTime * smoothing);
+
+        if (lookAtTarget)
+            transform.LookAt(lookAtTarget);
     }
 }
