@@ -70,7 +70,7 @@ public class PlayerController : NetworkBehaviour
         Debug.Log("in");
         isFinished = true;
         finishObject.SetActive(true);
-        CmdChangePlayerPrefab(CustomNetworkManager.playerPrefabIndex + 3, finishObject.transform.position);
+        CmdChangePlayerPrefab(networkManager.playerPrefabIndex + 3, finishObject.transform.position);
     }
 
 
@@ -112,10 +112,14 @@ public class PlayerController : NetworkBehaviour
     // Use this for initialization
     void Start ()
     {
-        animator = GetComponent<Animator>();
-        nameLabel = transform.Find("Label").gameObject.GetComponent<TextMesh>();
+        //animator = GetComponent<Animator>();
+        //nameLabel = transform.Find("Label").gameObject.GetComponent<TextMesh>();
 
         networkManager = NetworkManager.singleton.GetComponent<CustomNetworkManager>();
+        if (networkManager == null)
+            Debug.Log(":(");
+        else
+            Debug.Log(":)");
     }
 
     // Update is called once per frame
