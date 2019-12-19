@@ -30,8 +30,13 @@ public class PlayerController : NetworkBehaviour
     void CmdChangePlayerPrefab(int prefabIndex)
     {
         networkManager.ChangePlayerPrefab(this, prefabIndex);
-    }  
-    
+    }
+    [Command]
+    void CmdChangePlayerPrefab(int prefabIndex, Transform parent)
+    {
+        networkManager.ChangePlayerPrefab(this, prefabIndex, parent);
+    }
+
     // Pumpking sync /////////////////////////////////////
     [Command]
     void CmdAddPumpkin(int prefabIndex)
