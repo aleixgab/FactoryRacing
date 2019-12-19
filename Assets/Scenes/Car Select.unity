@@ -943,7 +943,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7249d19912f7ba46bfbbe0b7ffcb096, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  manager: {fileID: 0}
+  manager: {fileID: 1286289801}
   cars:
   - {fileID: 1565192252}
   - {fileID: 2096249617}
