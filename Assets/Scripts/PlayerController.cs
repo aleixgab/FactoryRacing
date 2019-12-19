@@ -66,9 +66,9 @@ public class PlayerController : NetworkBehaviour
 
     [Command]
     void CmdFinishLap() { isFinished = true; }
-    void SyncFinishLap() 
+    void SyncFinishLap(bool b) 
     {
-        finishTransform.gameObject.SetActive(true);
+        finishTransform.gameObject.SetActive(b);
         CmdChangePlayerPrefab(networkManager.playerPrefabIndex + 3);
     }
 
