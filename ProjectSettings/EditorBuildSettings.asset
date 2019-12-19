@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Car Select.unity
     guid: 768d48061ceb2604da982bcf7514805b
   - enabled: 1
-    path: Assets/Track/Scenes/Sprint Track.unity
+    path: Assets/Scenes/Sprint Track.unity
     guid: 46478303f7c601e4e8584cb7f8d31d7f
   m_configObjects: {}

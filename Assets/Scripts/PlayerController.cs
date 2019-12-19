@@ -54,13 +54,6 @@ public class PlayerController : NetworkBehaviour
                 }
             }
 
-            short newIndex = (short)GUILayout.SelectionGrid(networkManager.playerPrefabIndex, networkManager.playerNames, 3);
-
-            if(newIndex != networkManager.playerPrefabIndex)
-            {
-                networkManager.playerPrefabIndex = newIndex;
-                CmdChangePlayerPrefab(newIndex);
-            }
             GUILayout.EndArea();
         }
     }

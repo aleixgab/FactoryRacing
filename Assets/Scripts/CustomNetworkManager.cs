@@ -17,7 +17,7 @@ public class MsgTypes
 public class CustomNetworkManager : NetworkManager
 {
 
-    public static short playerPrefabIndex;
+    public short playerPrefabIndex;
 
     // 1) Executed in the server 
     public override void OnStartServer()
@@ -46,6 +46,7 @@ public class CustomNetworkManager : NetworkManager
     {
         MsgTypes.PlayerPrefabMsg msg = netMsg.ReadMessage<MsgTypes.PlayerPrefabMsg>();
         msg.prefabIndex = playerPrefabIndex;
+        Debug.Log(playerPrefabIndex);
         client.Send(MsgTypes.PlayerPrefabSelect, msg);
     }
 
@@ -57,21 +58,10 @@ public class CustomNetworkManager : NetworkManager
         base.OnServerAddPlayer(netMsg.conn, msg.controllerId);
     }
 
-    public string[] playerNames = new string[] { "Boy", "Girl", "Robot" };
-
-    private void OnGUI()
-    {
-        if (!isNetworkActive)
-        {
-            playerPrefabIndex = (short)GUI.SelectionGrid(
-              new Rect(Screen.width - 200, 10, 200, 50),
-              playerPrefabIndex,
-              playerNames,
-              3);
-        }
-    }
     public void ChangePlayerPrefab(PlayerController currentPlayer, int prefabIndex)
     {
+        Debug.Log(playerPrefabIndex);
+
         // Instantiate a new GameObject where the previous one was 
         GameObject newPlayer = Instantiate(spawnPrefabs[prefabIndex],
           currentPlayer.gameObject.transform.position,
