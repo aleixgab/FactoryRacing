@@ -80,6 +80,17 @@ public class PlayerController : NetworkBehaviour
         else
             Debug.Log(":)");
 
+        if (isLocalPlayer)
+        {
+            CameraFollow camera = Camera.main.GetComponent<CameraFollow>();
+
+            if (camera)
+            {
+                camera.positionTarget = transform.Find("CamPosition");
+                camera.lookAtTarget = transform.Find("CamLookAtTarget");
+            }
+        }
+
         //CmdChangePlayerPrefab(networkManager.playerPrefabIndex);
      }
 

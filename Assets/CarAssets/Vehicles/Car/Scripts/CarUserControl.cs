@@ -14,15 +14,6 @@ namespace UnityStandardAssets.Vehicles.Car
         {
             // get the car controller
             m_Car = GetComponent<CarController>();
-
-
-            CameraFollow camera = Camera.main.GetComponent<CameraFollow>();
-
-            if (camera)
-            {
-                camera.positionTarget = transform.Find("CamPosition");
-                camera.lookAtTarget = transform.Find("CamLookAtTarget");
-            }
         }
 
 
