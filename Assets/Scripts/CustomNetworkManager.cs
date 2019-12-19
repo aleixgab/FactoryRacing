@@ -17,7 +17,7 @@ public class MsgTypes
 public class CustomNetworkManager : NetworkManager
 {
 
-    public short playerPrefabIndex;
+    public static short playerPrefabIndex;
 
     // 1) Executed in the server 
     public override void OnStartServer()
@@ -91,6 +91,8 @@ public class CustomNetworkManager : NetworkManager
 
         NetworkServer.Spawn(gameObject);
     }
+
+    
 }
 
 

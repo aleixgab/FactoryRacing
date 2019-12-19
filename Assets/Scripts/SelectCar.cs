@@ -22,6 +22,9 @@ public class SelectCar : MonoBehaviour
         {
             OnButtonPrev();
         }
+
+        transform.RotateAround(cars[current].transform.position, Vector3.up, -15 * Time.deltaTime);
+        transform.LookAt(cars[current].transform.position);
     }
 
     public void OnButtonNext()
@@ -46,4 +49,9 @@ public class SelectCar : MonoBehaviour
         cars[current].SetActive(true);
     }
 
+
+    private void OnDestroy()
+    {
+        PlayerPrefs.SetInt("CarID", current);
+    }
 }
