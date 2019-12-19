@@ -13,7 +13,7 @@ public class PlayerController : NetworkBehaviour
     const float RUNNING_SPEED = 10.0f;
     const float ROTATION_SPEED = 180.0f;
 
-    public GameObject finishObject;
+    public Transform finishTransform;
 
     // Name sync /////////////////////////////////////
     [SyncVar(hook = "SyncNameChanged")]
@@ -27,9 +27,9 @@ public class PlayerController : NetworkBehaviour
 
     // Prefab sync /////////////////////////////////////
     [Command]
-    void CmdChangePlayerPrefab(int prefabIndex, Vector3 pos)
+    void CmdChangePlayerPrefab(int prefabIndex)
     {
-        networkManager.ChangePlayerPrefab(this, prefabIndex, pos);
+        networkManager.ChangePlayerPrefab(this, prefabIndex);
     }  
     
     // Pumpking sync /////////////////////////////////////
@@ -61,16 +61,15 @@ public class PlayerController : NetworkBehaviour
     }
 
     // Finish sync ////////////////////////////////
-    [SyncVar(hook = "FinishLap")]
+    [SyncVar(hook = "SyncFinishLap")]
     bool isFinished = false;
 
     [Command]
-    void CmdFinishLap()
+    void CmdFinishLap() { isFinished = true; }
+    void SyncFinishLap() 
     {
-        Debug.Log("in");
-        isFinished = true;
-        finishObject.SetActive(true);
-        CmdChangePlayerPrefab(networkManager.playerPrefabIndex + 3, finishObject.transform.position);
+        finishTransform.gameObject.SetActive(true);
+        CmdChangePlayerPrefab(networkManager.playerPrefabIndex + 3);
     }
 
 
