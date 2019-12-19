@@ -67,9 +67,13 @@ public class PlayerController : NetworkBehaviour
 
     // Finish sync ////////////////////////////////
     [SyncVar(hook = "FinishLap")]
+    bool isFinished = false;
 
     [Command]
-    void CmdSetAnimation(string animName) { animationName = animName; }
+    void CmdFinishLap() 
+    {
+        isFinished = true;
+    }
 
 
     // Animation sync ////////////////////////////////
@@ -178,7 +182,7 @@ public class PlayerController : NetworkBehaviour
     {
         if(other.CompareTag("Finish"))
         {
-
+            CmdFinishLap();
         }
     }
 }
