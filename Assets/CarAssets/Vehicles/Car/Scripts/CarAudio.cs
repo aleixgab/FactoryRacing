@@ -87,7 +87,7 @@ namespace UnityStandardAssets.Vehicles.Car
         private void Update()
         {
             float camDist = 0;
-            if (Camera.main.isActiveAndEnabled)
+            if (Camera.main)
             {
                 // get the distance to main camera
                 camDist = (Camera.main.transform.position - transform.position).sqrMagnitude;

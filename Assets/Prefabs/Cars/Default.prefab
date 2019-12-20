@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e850fb8a9035b1b4ca68b5b4f82e0767, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  someoneFinished: 0
+  carID: 0
   finishTransform: {fileID: 7227774800955115802, guid: 152aac1bc618c6542a8edf5d2f0fa4fb,
     type: 3}
 --- !u!114 &5460378779458627862
