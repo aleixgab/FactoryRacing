@@ -5,7 +5,7 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour
 {
-    private int carID = -1;
+    public int carID = 0;
     private TextMesh nameLabel;
     private CustomNetworkManager networkManager;
 
@@ -75,11 +75,6 @@ public class PlayerController : NetworkBehaviour
 
         networkManager = NetworkManager.singleton.GetComponent<CustomNetworkManager>();
 
-        if (networkManager == null)
-            Debug.Log(":(");
-        else
-            Debug.Log(":)");
-
         if (isLocalPlayer)
         {
             CameraFollow camera = Camera.main.GetComponent<CameraFollow>();
@@ -90,10 +85,12 @@ public class PlayerController : NetworkBehaviour
                 camera.lookAtTarget = transform.Find("CamLookAtTarget");
             }
         }
-
-
-        carID = networkManager.playerPrefabIndex;
      }
+    private void Update()
+    {
+   //     if (Manager.raceFinished)
+    //        gameObject.SetActive(false);
+    }
 
     private void OnTriggerEnter(Collider other)
     {

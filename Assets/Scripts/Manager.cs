@@ -22,7 +22,7 @@ public class Manager : MonoBehaviour
         {
             Camera.main.gameObject.SetActive(false);
             finishCamera.SetActive(true);
-            text = false;
+            text = true;
             finishText.SetActive(true);
             cars[winner].SetActive(true);
         }
