@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class Manager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        int carID = PlayerPrefs.GetInt("CarID");
-    }
+    public GameObject finishText;
+    public GameObject[] cars;
+    public GameObject finishCamera;
+    public static bool raceFinished = false;
+    public static int winner = 0;
+    private bool text = false;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        
+        raceFinished = false;
+        finishText.SetActive(false);
+    }
+    private void Update()
+    {
+        if (raceFinished && !text)
+        {
+            Camera.main.gameObject.SetActive(false);
+            finishCamera.SetActive(true);
+            text = false;
+            finishText.SetActive(true);
+            cars[winner].SetActive(true);
+        }
     }
 }

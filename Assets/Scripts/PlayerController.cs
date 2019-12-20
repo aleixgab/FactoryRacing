@@ -5,9 +5,8 @@ using UnityEngine.Networking;
 
 public class PlayerController : NetworkBehaviour
 {
-    public bool someoneFinished = false;
+    private int carID = -1;
     private TextMesh nameLabel;
-
     private CustomNetworkManager networkManager;
 
     public Transform finishTransform;
@@ -63,7 +62,6 @@ public class PlayerController : NetworkBehaviour
     void CmdFinishLap(bool finish) { isFinished = finish; }
     void SyncFinishLap(bool finish) 
     {
-        someoneFinished = finish;
         //finishTransform.gameObject.SetActive(finish);
         //CmdChangePlayerPrefab(networkManager.playerPrefabIndex + 3, finishTransform);
     }
@@ -93,7 +91,8 @@ public class PlayerController : NetworkBehaviour
             }
         }
 
-        //CmdChangePlayerPrefab(networkManager.playerPrefabIndex);
+
+        carID = networkManager.playerPrefabIndex;
      }
 
     private void OnTriggerEnter(Collider other)
@@ -101,6 +100,8 @@ public class PlayerController : NetworkBehaviour
         Debug.Log(other.tag.ToString());
         if(other.CompareTag("Finish"))
         {
+            Manager.raceFinished = true;
+            Manager.winner = carID;
             CmdFinishLap(true);
             SyncFinishLap(true);
         }

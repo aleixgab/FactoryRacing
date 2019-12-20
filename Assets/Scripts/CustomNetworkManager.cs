@@ -46,7 +46,6 @@ public class CustomNetworkManager : NetworkManager
     {
         MsgTypes.PlayerPrefabMsg msg = netMsg.ReadMessage<MsgTypes.PlayerPrefabMsg>();
         msg.prefabIndex = playerPrefabIndex;
-        Debug.Log(playerPrefabIndex);
         client.Send(MsgTypes.PlayerPrefabSelect, msg);
     }
 
